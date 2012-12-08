@@ -99,6 +99,9 @@ def term(url):
     for e in main.xpath('.//div[@class="field field-type-text field-field-thesaurus-scope-note"]/div[@class="field-items"]/div'):
         term['scope_notes'].append(e.text_content().strip())
 
+    for e in main.xpath('.//div[@class="field field-type-text field-field-thesaurus-use-note"]/div[@class="field-items"]/div'):
+        term['scope_notes'].append(e.text_content().strip())
+
     for e in main.xpath('.//div[@class="citation"]'):
         c = citation(e)
         if c: term['citations'].append(c)
