@@ -22,6 +22,7 @@ SOURCES = {
 def main():
     saa = {}
     for t in terms():
+        print t['pref_label']
         saa[t['pref_label']] = t
     compute_centrality(saa)
     open("tucua.json", "w").write(json.dumps(saa, indent=2))
