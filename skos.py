@@ -62,7 +62,8 @@ for pref_label in thesaurus.keys():
 
     for n in term["source_terms"]:
         bnode = rdflib.BNode()
-        graph.add((uri, mads.Source, bnode))
+        graph.add((uri, mads.hasSource, bnode))
+        graph.add((bnode, rdflib.RDF.type, mads.Source))
         if n['source'] is not None:
             graph.add((bnode, mads.citationSource, rdflib.Literal(n['source'])))
         graph.add((bnode, mads.citationNote, rdflib.Literal(n['term'])))
