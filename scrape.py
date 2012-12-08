@@ -56,11 +56,11 @@ def term(url):
         'broader': [],
         'narrower': [],
         'related': [],
-        'distinguish_from': [],
-        'notes': [],
+        #'distinguish_from': [],
+        #'notes': [],
         'scope_notes': [],
         'source_terms': [],
-        'citations': []
+        #'citations': []
         }
     doc = lxml.html.parse(url)
     main = doc.find('.//div/[@id="main"]')
@@ -72,7 +72,6 @@ def term(url):
     # term['definition'] = main.find('.//div[@class="content"]/p')
     #
     # if term['definition'] != None:
-    #
     #     term['definition'] = term['definition'].text_content()
     #     term['definition'] = re.sub('^\(also.+?\), ', '', term['definition'])
 
@@ -102,9 +101,9 @@ def term(url):
     for e in main.xpath('.//div[@class="field field-type-text field-field-thesaurus-use-note"]/div[@class="field-items"]/div'):
         term['scope_notes'].append(e.text_content().strip())
 
-    for e in main.xpath('.//div[@class="citation"]'):
-        c = citation(e)
-        if c: term['citations'].append(c)
+    # for e in main.xpath('.//div[@class="citation"]'):
+    #     c = citation(e)
+    #     if c: term['citations'].append(c)
 
     term['broader'] = syndetic_links(doc, "broader", url)
     term['related'] = syndetic_links(doc, "related", url)
