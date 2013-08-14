@@ -57,8 +57,9 @@ for pref_label in thesaurus.keys():
     for n in term["scope_notes"]:
         graph.add((uri, skos.scopeNote, rdflib.Literal(n)))
 
-    for n in term["notes"]:
-        graph.add((uri, skos.note, rdflib.Literal(n)))
+    if 'notes' in term:
+       for n in term["notes"]:
+            graph.add((uri, skos.note, rdflib.Literal(n)))
 
     for n in term["source_terms"]:
         bnode = rdflib.BNode()
